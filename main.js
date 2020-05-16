@@ -101,13 +101,13 @@ function checkAnswers() {
     var allAnswerNodes = document.querySelectorAll(".answer-text")
     allAnswers = Array.prototype.slice.call(allAnswerNodes);
     allAnswers.reverse().forEach(function(element) {
+        if (element.innerText.toLowerCase() === answer) {
+            wasCorrect = true;
+        }
         // We kind of override for the final element so this stops jankiness around highlighting late
         if (loop !== 6750) {
 
             if (!wasCorrect) {
-                if (element.innerText.toLowerCase() === answer) {
-                    wasCorrect = true;
-                }
                 setTimeout(function() { highlightElement(element, wasCorrect, answerSearching, answerCorrect, answer_container)},  loop);
 
                 setTimeout(function() { unhighlightElement(element, wasCorrect)}, 750 + loop);
