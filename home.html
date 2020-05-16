@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="main.js"></script>
+    <meta charset="UTF-8">
+    <title>Karan's Tenable Quiz</title>
+</head>
+<body class="background">
+
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        div.previous-question-btn {
+            display: none;
+        }
+
+        div#answer-1 {
+            margin-top: 50px;
+        }
+
+        div.answer {
+            height: 25px;
+            background-color: purple;
+            border-bottom: 5px;
+            border-color: white;
+            width: 100%;
+        }
+
+        p {
+            float: center;
+            text-align: center;
+            z-index: 100;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body.background {
+            color: white;
+            font-weight: bold;
+            background-image: url("tenable-2.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        div.centered {
+          position: absolute;
+          top: 45%;
+          left: 50%;
+        }
+
+        div.correct {
+            background-color: green;
+        }
+    </style>
+
+    <button id="previous-question-btn">Previous question</button>
+    <button id="next-question-btn">Next question</button>
+    <button id="reveal-all-btn">Reveal all</button>
+    <div class="centered">
+        <div class="question" id="question"></div>
+
+        <div><input id="answer-input" placeholder="answer"></input><button id="submit-answer-btn">Submit</button></div>
+        <br>
+
+        <div class="answer"><p class="hidden answer-text" id="answer-1"></p><p class="default-answer">1</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-2"></p><p class="default-answer">2</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-3"></p><p class="default-answer">3</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-4"></p><p class="default-answer">4</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-5"></p><p class="default-answer">5</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-6"></p><p class="default-answer">6</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-7"></p><p class="default-answer">7</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-8"></p><p class="default-answer">8</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-9"></p><p class="default-answer">9</p></div>
+        <div class="answer"><p class="hidden answer-text" id="answer-10"></p><p class="default-answer">10</p></div>
+    </div>
+</body>
+</html>
