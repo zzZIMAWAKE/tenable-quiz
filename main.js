@@ -101,16 +101,22 @@ function checkAnswers() {
     var allAnswerNodes = document.querySelectorAll(".answer-text")
     allAnswers = Array.prototype.slice.call(allAnswerNodes);
     allAnswers.reverse().forEach(function(element) {
-        if (!wasCorrect) {
-            if (element.innerText.toLowerCase() === answer) {
-                wasCorrect = true;
-            }
-            setTimeout(function() { highlightElement(element, wasCorrect, answerSearching, answerCorrect, answer_container)},  loop);
+        // We kind of override for the final element so this stops jankiness around highlighting late
+        if (loop !== 6750) {
 
-            setTimeout(function() { unhighlightElement(element, wasCorrect)}, 750 + loop);
+            if (!wasCorrect) {
+                if (element.innerText.toLowerCase() === answer) {
+                    wasCorrect = true;
+                }
+                setTimeout(function() { highlightElement(element, wasCorrect, answerSearching, answerCorrect, answer_container)},  loop);
 
-            loop += 750
-        };
+                setTimeout(function() { unhighlightElement(element, wasCorrect)}, 750 + loop);
+
+                loop += 750
+            };
+        } else {
+            loop += 750;
+        }
     });
 
     if (!wasCorrect) {
@@ -127,8 +133,8 @@ function checkAnswers() {
 };
 
 document.addEventListener("DOMContentLoaded", function() {
-    var theme = new Audio("tenable-theme.mp3");
-    theme.play();
+//    var theme = new Audio("tenable-theme.mp3");
+//    theme.play();
 
     var answerInput = document.getElementById("answer-input")
     setCurrentQuestionAndAnswers();
