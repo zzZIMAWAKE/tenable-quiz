@@ -133,8 +133,8 @@ function checkAnswers() {
 };
 
 document.addEventListener("DOMContentLoaded", function() {
-//    var theme = new Audio("tenable-theme.mp3");
-//    theme.play();
+    var theme = new Audio("tenable-theme.mp3");
+    theme.play();
 
     var answerInput = document.getElementById("answer-input")
     setCurrentQuestionAndAnswers();
