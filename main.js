@@ -72,10 +72,13 @@ function wrongAnswer(answerSearching, elements) {
     setTimeout(function() { removeHighlightForIncorrect(elements)} , 500);
 }
 
-function correctAnswerFound(answerSearching, answerCorrect, answer_container) {
+function playCorrectAnswerSound(answerCorrect, answerSearching) {
     answerCorrect.play();
     answerSearching.pause();
     answerSearching.currentTime = 0;
+}
+
+function correctAnswerFound(answer_container) {
     answer_container.parentElement.classList.add("correct");
     answer_container.parentElement.getElementsByClassName("default-answer")[0].classList.add("hidden");
     answer_container.classList.remove("hidden");
@@ -88,7 +91,7 @@ function checkAnswers() {
     var answer = answerInput.value.toLowerCase();
     var current_question = questions[current_question_number];
     var current_answers = answers[current_question_number];
-    var answerCorrect = new Audio("tenable-correct-noise-2.mp3");
+    var answerCorrect = new Audio("tenable-correct-noise-3.mp3");
     var wasCorrect = false;
 
     var answer_container = document.getElementById("answer-" + (current_answers.indexOf(answer) + 1));
@@ -111,30 +114,30 @@ function checkAnswers() {
                 setTimeout(function() { highlightElement(element, wasCorrect, answerSearching, answerCorrect, answer_container)},  loop);
 
                 setTimeout(function() { unhighlightElement(element, wasCorrect)}, 750 + loop);
-
-                loop += 750
+                loop += 750;
             };
-        } else {
-            loop += 750;
-        }
+        };
     });
 
+    console.log(loop)
+
     if (!wasCorrect) {
-        setTimeout(function () {wrongAnswer(answerSearching, allAnswerNodes, answer)}, loop - 750)
+        setTimeout(function () {wrongAnswer(answerSearching, allAnswerNodes, answer)}, loop)
     };
 
     if (wasCorrect) {
         console.log(loop);
         console.log("correct answer found")
-        setTimeout(function () {correctAnswerFound(answerSearching, answerCorrect, answer_container)}, loop - 750)
+        setTimeout(function () {playCorrectAnswerSound(answerCorrect, answerSearching)}, loop)
+        setTimeout(function () {correctAnswerFound(answer_container)}, loop)
     }
 
     answerInput.value = "";
 };
 
 document.addEventListener("DOMContentLoaded", function() {
-    var theme = new Audio("tenable-theme.mp3");
-    theme.play();
+//    var theme = new Audio("tenable-theme.mp3");
+//    theme.play();
 
     var answerInput = document.getElementById("answer-input")
     setCurrentQuestionAndAnswers();
@@ -158,9 +161,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (current_question_number === 5) {
-            backgroundElement = document.getElementsByClassName("background")[0]
-            backgroundElement.classList.remove("background");
-            backgroundElement.classList.add("background-karan");
+            backgroundElement = document.getElementById("background-img");
+            backgroundElement.classList.add("transparent");
+            backgroundElementNew = document.getElementById("background-img-2");
+            backgroundElementNew.classList.remove("transparent");
         }
     });
     document.getElementById("previous-question-btn").addEventListener("click", function(){

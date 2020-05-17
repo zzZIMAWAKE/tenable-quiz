@@ -5,87 +5,107 @@
     <meta charset="UTF-8">
     <title>Karan's Tenable Quiz</title>
 </head>
-<body class="background">
 
-    <style>
-        .hidden {
-            display: none;
-        }
+<style>
+    .hidden {
+        display: none;
+    }
 
-        div.previous-question-btn {
-            display: none;
-        }
+    div.previous-question-btn {
+        display: none;
+    }
 
-        div#answer-1 {
-            margin-top: 50px;
-        }
+    div#answer-1 {
+        margin-top: 50px;
+    }
 
-        div.answer {
-            height: 25px;
-            background-color: purple;
-            border-bottom: 5px;
-            border-color: white;
-            width: 100%;
-        }
+    div.answer {
+        height: 25px;
+        background-color: purple;
+        border-bottom: 5px;
+        border-color: white;
+        width: 100%;
+    }
 
-        p {
-            float: center;
-            text-align: center;
-            z-index: 100;
-            margin: 0px;
-            padding: 0px;
-        }
+    p {
+        float: center;
+        text-align: center;
+        z-index: 100;
+        margin: 0px;
+        padding: 0px;
+    }
 
-        body.background {
-            color: white;
-            font-weight: bold;
-            background-image: url("tenable-2.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+    body {
+        color: white;
+        font-weight: bold;
+        transition: 1s linear;
+        margin: 0;
+        height: 100vh;
+    }
 
-        body.background-karan {
-            color: white;
-            font-weight: bold;
-            background-image: url("tenable-karan.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+    .background-img {
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      -webkit-transition: opacity 0.6s ease-in-out;
+      -moz-transition: opacity 0.6s ease-in-out;
+      -o-transition: opacity 0.6s ease-in-out;
+      transition: opacity 0.6s ease-in-out;
+    }
+    img.transparent {
+        opacity:0;
+    }
 
-        div.centered {
-          position: absolute;
-          top: 45%;
-          left: 50%;
-        }
+    .background-container {
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
 
-        div.correct {
-            background-color: green;
-        }
+    div.centered {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+    }
 
-        div.incorrect {
-            background-color: red;
-        }
-    </style>
+    div.correct {
+        background-color: green;
+    }
 
-    <button id="previous-question-btn">Previous question</button>
-    <button id="next-question-btn">Next question</button>
-    <button id="reveal-all-btn">Reveal all</button>
-    <div class="centered">
-        <div class="question" id="question"></div>
+    div.incorrect {
+        background-color: red;
+    }
+</style>
+<body>
+    <div class="background-container">
+        <img class="background-img" id="background-img" src="tenable-2.jpg"/>
+        <img class="background-img transparent" id="background-img-2" src="tenable-karan.jpg"/>
 
-        <div><input id="answer-input" placeholder="answer"></input><button id="submit-answer-btn">Submit</button></div>
-        <br>
+        <button id="previous-question-btn">Previous question</button>
+        <button id="next-question-btn">Next question</button>
+        <button id="reveal-all-btn">Reveal all</button>
+        <div class="centered">
+            <div class="question" id="question"></div>
 
-        <div class="answer"><p class="hidden answer-text" id="answer-1"></p><p class="default-answer">1</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-2"></p><p class="default-answer">2</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-3"></p><p class="default-answer">3</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-4"></p><p class="default-answer">4</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-5"></p><p class="default-answer">5</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-6"></p><p class="default-answer">6</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-7"></p><p class="default-answer">7</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-8"></p><p class="default-answer">8</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-9"></p><p class="default-answer">9</p></div>
-        <div class="answer"><p class="hidden answer-text" id="answer-10"></p><p class="default-answer">10</p></div>
+            <div><input id="answer-input" placeholder="answer"></input><button id="submit-answer-btn">Submit</button></div>
+            <br>
+
+            <div class="answer"><p class="hidden answer-text" id="answer-1"></p><p class="default-answer">1</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-2"></p><p class="default-answer">2</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-3"></p><p class="default-answer">3</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-4"></p><p class="default-answer">4</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-5"></p><p class="default-answer">5</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-6"></p><p class="default-answer">6</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-7"></p><p class="default-answer">7</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-8"></p><p class="default-answer">8</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-9"></p><p class="default-answer">9</p></div>
+            <div class="answer"><p class="hidden answer-text" id="answer-10"></p><p class="default-answer">10</p></div>
+        </div>
     </div>
 </body>
 </html>
